@@ -31,11 +31,16 @@ class ProjectsController extends Controller
      */
     public function store()
     {
-        $validatedData = request()->validate([
+        request()->validate([
             'title' => 'required',
             'description' => 'required'
         ]);
-        Project::create($validatedData)->save();
+
+        Project::create([
+            'title' => request('title'),
+            'description' => request('description'),
+            'owner_id' => auth()->user()->id
+        ])->save();
 
         return redirect('/projects');
     }
