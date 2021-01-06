@@ -39,7 +39,7 @@ class ProjectsController extends Controller
         Project::create([
             'title' => request('title'),
             'description' => request('description'),
-            'owner_id' => auth()->user()->id
+            'owner_id' => 1
         ])->save();
 
         return redirect('/projects');
