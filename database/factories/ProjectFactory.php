@@ -26,7 +26,10 @@ class ProjectFactory extends Factory
         return [
             'title' => $this->faker->sentence,
             'description' => $this->faker->paragraph,
-            'owner_id' => User::factory()->create()->id
+            'owner_id' => function() {
+            // closure to create auser for the project.
+                return User::factory()->create()->id;
+            }
         ];
     }
 }

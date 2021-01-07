@@ -17,6 +17,8 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_user_can_create_a_project()
     {
+        $this->actingAs(User::factory()->create());
+
         $this->withExceptionHandling();
 
         $attributes = [
@@ -34,23 +36,38 @@ class ProjectsTest extends TestCase
     /** @test */
     public function a_project_requires_a_title()
     {
+        $this->actingAs(User::factory()->create());
         $attributes = Project::factory()->raw(['title' => '']);
-        $this->post('/projects')->assertSee($attributes['title']);
+        $this->post('/projects')->assertSessionHasErrors($attributes['title']);
     }
 
     /** @test */
     public function a_project_requires_a_description()
     {
+        $this->actingAs(User::factory()->create());
+
         $attributes = Project::factory()->raw(['description' => '']);
-        $this->post('/projects')->assertSee($attributes['description']);
+        $this->post('/projects')->assertSessionHasErrors($attributes['description']);
     }
 
 
     /** @test */
     public function a_user_can_view_a_project()
     {
+        $this->withoutExceptionHandling();
         $project = Project::factory()->make();
 
-        $this->get('/projects/'. $project->id)->assertSee($project->title);
+        $this->get('/projects/'. $project->id)
+            ->assertSee($project->title)
+            ->assertSee($project->description);
+    }
+
+    /** @test  */
+    public function a_project_requires_an_owner()
+    {
+        $this->actingAs(User::factory()->create());
+
+        $attributes = Project::factory()->raw();
+        $this->post('/projects', $attributes)->assertRedirect('login');
     }
 }

@@ -28,4 +28,4 @@ require __DIR__.'/auth.php';
 Route::get('/projects', 'App\Http\Controllers\ProjectsController@index');
 Route::get('/projects/{project}', 'App\Http\Controllers\ProjectsController@show');
 
-Route::post('/projects', 'App\Http\Controllers\ProjectsController@store')->name('projects');
+Route::middleware('auth')->post('/projects', 'App\Http\Controllers\ProjectsController@store')->name('projects');

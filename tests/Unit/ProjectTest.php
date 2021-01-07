@@ -2,17 +2,18 @@
 
 namespace Tests\Unit;
 
+use App\Models\Project;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\TestCase;
 
 class ProjectTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
+    use RefreshDatabase;
+   /** @test */
+    public function it_has_a_path()
     {
-        $this->assertTrue(true);
+        $project = Project::factory()->create();
+
+        $this->assertEquals('/projects/' . $project->id, $project->path());
     }
 }
