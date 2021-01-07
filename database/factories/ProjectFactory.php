@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Project;
+use App\Models\User;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProjectFactory extends Factory
@@ -22,7 +24,9 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'description' => $this->faker->paragraph,
+            'owner_id' => User::factory()->create()->id
         ];
     }
 }
