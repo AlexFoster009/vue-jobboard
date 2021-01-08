@@ -12,7 +12,12 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        /*
+         * Since there is a relationship between users and Project
+         * we can get all of the authenticated users projects by
+         * setting $projects to the Auth users projects.
+         */
+        $projects = auth()->user()->projects;
 
         return view('projects.index', compact('projects'));
     }
