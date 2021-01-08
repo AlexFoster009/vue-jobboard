@@ -24,8 +24,13 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+// creae a route group so all project views are using auth middleware
 
-Route::get('/projects', 'App\Http\Controllers\ProjectsController@index')->middleware('auth');
-Route::get('/projects/{project}', 'App\Http\Controllers\ProjectsController@show')->middleware('auth');
+Route::group(['middleware' => 'auth'], function(){
 
-Route::middleware('auth')->post('/projects', 'App\Http\Controllers\ProjectsController@store')->name('projects');
+    Route::get('/projects', 'App\Http\Controllers\ProjectsController@index');
+    Route::get('/projects/{project}', 'App\Http\Controllers\ProjectsController@show');
+    Route::post('/projects', 'App\Http\Controllers\ProjectsController@store')->name('projects');
+
+});
+
