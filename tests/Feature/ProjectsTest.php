@@ -93,4 +93,14 @@ class ProjectsTest extends TestCase
         $attributes = Project::factory()->raw();
         $this->post('/projects', $attributes)->assertRedirect('login');
     }
+
+    /** @test */
+
+    public function an_authenticated_user_cannot_vew_the_projects_of_others()
+    {
+        $this->be(User::factory()->create());
+
+        $project = Project::factory()->create();
+        $this->get($project->path())->assertStatus(403);
+    }
 }
