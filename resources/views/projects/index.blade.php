@@ -1,28 +1,19 @@
 @extends('layouts.app')
 
 @section('content')
+    <div class="flex items-center mb-3">
+        <h1 class="mr-auto">Laravel Job Board</h1>
+        <a href="/projects/create">New Project</a>
+    </div>
     <div class="container">
-        <div class="project__form">
-            <form class="form" method="POST" action="{{route('projects')}}">
-                @csrf
-                <div class="form-group">
-                    <label for="title">Title:
-                        <input type="text" placeholder="Enter Title"/>
-                    </label>
-                    <label for="title">Description:
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                    </label>
-
-                </div>
-                <input type="submit" value="Submit">
-
-            </form>
-        </div>
-        <ul>
-            @foreach($projects as $project)
-                <li><a href="">{{$project->title}}</a></li>
-            @endforeach
-        </ul>
+       @forelse($projects as $project)
+            <div class="project">
+                <h2>{{$project->title}}</h2>
+                <p>{{$project->description}}</p>
+            </div>
+        @empty
+           <p>Sorry, there are no projects yet.</p>
+        @endforelse
     </div>
 
 @endsection

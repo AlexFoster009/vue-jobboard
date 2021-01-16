@@ -20,6 +20,7 @@ class ManageProjectsTest extends TestCase
     {
         $project = Project::factory()->create();
         $this->post('/projects', $project->toArray())->assertRedirect('login');
+        $this->get('/projects/create')->assertRedirect('login');
         $this->get('/projects')->assertRedirect('login');
         $this->get($project->path())->assertRedirect('login');
     }
@@ -30,7 +31,7 @@ class ManageProjectsTest extends TestCase
     {
         $this->actingAs(User::factory()->create());
 
-        $this->withExceptionHandling();
+        $this->get('/projects/create')->assertStatus(200);
 
         $attributes = [
           'title' => $this->faker->sentence,
