@@ -2,13 +2,7 @@
 
 @section('content')
     <div class="container">
-        <header class="flex items-center mb-3 py-4">
-            <div class="flex justify-between items-center w-full">
-                <h1 class="text-sm text-grey text-normal">My Projects</h1>
-                <br>
-                <a class="button" href="{{route('projects.create')}}">New Project</a>
-            </div>
-        </header>
+      @include('partials.header')
         <main class="container flex flex-wrap -mx-3">
             @forelse($projects as $project)
                 <div class="w-1/3 px-3 pb-6">
