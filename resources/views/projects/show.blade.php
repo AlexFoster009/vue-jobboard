@@ -5,7 +5,7 @@
       @include('partials.header')
         <div class="project__container flex -mx-3">
             <div class="col tasks lg:w-3/4 px-3">
-                <div class="mb-6">
+                <div class="mb-8">
                     <h2 class="text-grey font-normal mb-4 text-lg">Tasks</h2>
                     {{-- Tasks Here.--}}
                 </div>
