@@ -31435,6 +31435,10 @@ select {
   color: #fff;
 }
 
+.project__title{
+  border-color: #47cdff;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
