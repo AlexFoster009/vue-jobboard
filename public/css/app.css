@@ -31437,6 +31437,14 @@ select {
 
 .project__title{
   border-color: #47cdff;
+  margin-bottom: 0.75rem;
+  margin-left: -1.25rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1rem;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 400;
 }
 
 .project{

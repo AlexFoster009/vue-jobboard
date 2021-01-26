@@ -19,7 +19,7 @@
             </div>
             <div class="lg:w-1/4 px-3">
                 <div class="col project">
-                    <h1 >{{$project->title}}</h1>
+                    <h1 class="project__title border-l-4" >{{$project->title}}</h1>
                     <div>{{$project->description}}</div>
                     <a class="mt-4 button inline-block" href="/projects">Go Back</a>
                 </div>
