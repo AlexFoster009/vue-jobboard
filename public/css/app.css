@@ -31425,6 +31425,16 @@ select {
           animation: bounce 1s infinite;
 }
 
+.button {
+  background-color: #47cdff;
+  font-size: 0.875rem;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 7px 0 #b0eaff;
+  padding: 6px 10px;
+  color: #fff;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
