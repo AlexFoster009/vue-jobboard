@@ -7,7 +7,12 @@
             <div class="col tasks lg:w-3/4 px-3">
                 <div class="mb-8">
                     <h2 class="text-grey font-normal mb-4 text-lg">Tasks</h2>
-                    {{-- Tasks Here.--}}
+                    @forelse($project->tasks as $task)
+                        <div class="card mb-3">{{ $task->body }}</div>
+
+                    @empty
+                        <p>There are no tasks created for this project.</p>
+                    @endforelse
                 </div>
 
                 <div>
