@@ -11,7 +11,11 @@
                         <div class="card mb-3">{{ $task->body }}</div>
 
                     @empty
-                        <p>There are no tasks created for this project.</p>
+                        <div class="card mb-3">
+                            <form action="{{$project-path() .'/tasks'}}" method="POST">
+                                <input class="w-full" type="text" placeholder="Begin adding Tasks..." />
+                            </form>
+                        </div>
                     @endforelse
                 </div>
 
