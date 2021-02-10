@@ -26,13 +26,18 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 // creae a route group so all project views are using auth middleware
 
+/*
+ * @TODO
+ * Make Fix auth middle
+ */
+Route::get('/projects/create', 'App\Http\Controllers\ProjectsController@create')->name('projects.create');
+
 Route::group(['middleware' => 'auth'], function(){
 
     Route::get('/projects', 'App\Http\Controllers\ProjectsController@index');
     Route::get('/projects/{project}', 'App\Http\Controllers\ProjectsController@show');
-    Route::get('/projects/create', 'App\Http\Controllers\ProjectsController@create')->name('projects.create');
     Route::post('/projects', 'App\Http\Controllers\ProjectsController@store')->name('projects');
 
-    Route::post('/projects/{project}/tasks', 'ProjectTasksController@store');
+    Route::post('/projects/{project}/tasks', 'App\Http\Controllers\ProjectTasksController@store');
 });
 

@@ -7,16 +7,16 @@
             <div class="col tasks lg:w-3/4 px-3">
                 <div class="mb-8">
                     <h2 class="text-grey font-normal mb-4 text-lg">Tasks</h2>
-                    @forelse($project->tasks as $task)
+                    @foreach($project->tasks as $task)
                         <div class="card mb-3">{{ $task->body }}</div>
 
-                    @empty
-                        <div class="card mb-3">
-                            <form action="{{$project-path() .'/tasks'}}" method="POST">
-                                <input class="w-full" type="text" placeholder="Begin adding Tasks..." />
-                            </form>
-                        </div>
-                    @endforelse
+                    @endforeach
+                    <div class="card mb-3">
+                        <form action="{{$project->path() .'/tasks'}}" method="POST">
+                            @csrf
+                            <input name="body" class="w-full" type="text" placeholder="Begin adding Tasks..." />
+                        </form>
+                    </div>
                 </div>
 
                 <div>
