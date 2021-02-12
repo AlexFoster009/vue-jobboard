@@ -12,8 +12,8 @@ class ProjectTasksController extends Controller
         if(auth()->user() != $project->owner){
             abort(403);
         }
-        $attributes = request()->validate(['body' => 'required']);
-        $project->addTask($attributes);
+        request()->validate(['body' => 'required']);
+        $project->addTask(request('body'));
 
         return redirect($project->path());
     }
